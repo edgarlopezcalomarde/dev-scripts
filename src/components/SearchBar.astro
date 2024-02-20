@@ -1,0 +1,31 @@
+---
+import Search from "../utils/icons/Search.astro";
+---
+
+<nav class="flex flex-col gap-2 text-white">
+  <div class="max-w-[520px] w-full flex flex-col m-auto gap-2">
+    <div class="flex relative items-center">
+      <div class="absolute left-3 text-sm">
+        <Search />
+      </div>
+      <input
+        type="text"
+        class="bg-slate-700 border border-slate-600 outline-none w-full rounded-full pl-10 pr-4 py-2 max-h-full text-sm font-medium"
+      />
+    </div>
+
+    <!-- Max 6 # or max width -->
+
+    <ul class="flex gap-2 py-3 transition-all">
+      <li class="bg-slate-600 rounded px-2 py-1 cursor-pointer text-slate-200 text-sm lg:hover:outline outline-1 outline-slate-400">
+        #JS
+      </li>
+      <li class="bg-slate-600 rounded px-2 py-1 cursor-pointer text-slate-200 text-sm lg:hover:outline outline-1 outline-slate-400">
+        #Tailwind
+      </li>
+      <li class="bg-slate-600 rounded px-2 py-1 cursor-pointer text-slate-200 text-sm lg:hover:outline outline-1 outline-slate-400">
+        #React
+      </li>
+    </ul>
+  </div>
+</nav>

@@ -1,0 +1,32 @@
+---
+const { image, date, tags, description, title, url } = Astro.props;
+// console.log(image.url)
+---
+
+<li>
+  <a
+    href={url}
+    class="border flex flex-col md:flex-row p-4 h-full max-h-[400px] md:max-h-[200px] gap-2 rounded cursor-pointer transition-all lg:hover:scale-105"
+  >
+    <div
+      class="w-full md:max-w-[168px] h-[168px] border border-slate-400 bg-slate-500 text-slate-300 flex justify-center items-center"
+    >
+      <img
+        src={image?.url}
+        alt={image?.alt}
+        class="w-full h-full object-cover object-center"
+      />
+    </div>
+
+    <div class="flex flex-col h-[168px] p-2 gap-1 w-full">
+      <div class="text-sm font-medium text-slate-400">{date}</div>
+      <div class="text-xl font-medium text-white">{title}</div>
+      <div class="text-xs text-cyan-400 font-mono font-bold flex gap-2">
+        {tags?.map((tag: string) => <p>#{tag}</p>)}
+      </div>
+      <p class="line-clamp-3 text-slate-300">
+        {description}
+      </p>
+    </div>
+  </a>
+</li>

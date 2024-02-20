@@ -1,0 +1,62 @@
+---
+import MainLayout from "./MainLayout.astro";
+const { frontmatter } = Astro.props;
+---
+
+<MainLayout title={"DS - " + frontmatter.title}>
+  <section class="w-full text-white flex flex-col gap-2">
+    <div class="h-[300px] border rounded border-slate-500">
+      <img
+        src={frontmatter?.image?.url}
+        alt=""
+        class="w-full h-full object-cover object-center rounded"
+      />
+    </div>
+
+    <h2 class="text-3xl font-bold text-center text-slate-100 py-4">
+      {frontmatter.title}
+    </h2>
+
+    <div class="content flex flex-col gap-2">
+      <slot />
+    </div>
+  </section>
+</MainLayout>
+
+<style is:global>
+  h1 {
+    font-weight: 800;
+    font-size: 2rem; /* 30px */
+    line-height: 2.25rem; /* 36px */
+  }
+
+  h2 {
+    font-weight: 800;
+    font-size: 1.85rem; /* 20px */
+    line-height: 1.75rem; /* 28px */
+  }
+
+  h3 {
+    font-weight: 800;
+    font-size: 1.5rem; /* 18px */
+    line-height: 1.75rem; /* 28px */
+  }
+
+  h4 {
+    font-weight: 800;
+    font-size: 1.2rem; /* 16px */
+    line-height: 1.5rem; /* 24px */
+  }
+
+  h5 {
+    font-weight: 800;
+    font-size: 1rem; /* 14px */
+    line-height: 1.25rem; /* 20px */
+  }
+
+  h6 {
+    font-weight: 800;
+    font-size: 0.9rem; /* 12px */
+    line-height: 1rem; /* 16px */
+  }
+</style>

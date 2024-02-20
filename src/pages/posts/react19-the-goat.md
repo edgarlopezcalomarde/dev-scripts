@@ -4,7 +4,7 @@ pubDate: 2024-02-19
 description: "¡La espera ha terminado! tras 2 años sin publicar una version principal, tenemos ya los primeros avances de React19."
 author: "Edgar López Calomarde"
 image:
-  url: "/images/react19.jpg"
+  url: "/dev-scripts/images/react19.jpg"
   alt: "El logotipo de react19."
 tags: ["react", "js"]
 layout: "../../layouts/PostLayout.astro"

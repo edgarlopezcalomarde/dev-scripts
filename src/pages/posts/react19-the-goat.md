@@ -11,7 +11,10 @@ layout: "../../layouts/PostLayout.astro"
 ---
 
 ## Principales cambios
-- Introduccion de un **"React Compiler"** que llevara acabo la tarea de los siguientes hooks useMemo, useCallback, memo.
+- Introduccion de un **"React Compiler"** que llevara acabo la tarea de los siguientes hooks:
+  - useMemo
+  - useCallback
+  - memo 
 - **Soporte nativo a** `<title>`, `<link>` y `<meta>`
 - *Compatibilidad con* **Web Components**
 - Eliminar uso de `forwardRef`

@@ -17,7 +17,7 @@ const { frontmatter } = Astro.props;
       {frontmatter.title}
     </h2>
 
-    <div class="content flex flex-col gap-2">
+    <div class="content flex flex-col gap-6 py-6">
       <slot />
     </div>
   </section>
@@ -59,4 +59,24 @@ const { frontmatter } = Astro.props;
     font-size: 0.9rem; /* 12px */
     line-height: 1rem; /* 16px */
   }
+
+  ul {
+    list-style: inside;
+    gap: 4px;
+    display: flex;
+    flex-direction: column;
+  }
+
+
+  li ul {
+    padding-left: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    list-style: inside;
+    list-style-type: circle;
+    gap: 4px;
+    display: flex;
+    flex-direction: column;
+  }
+
 </style>

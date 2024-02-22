@@ -1,5 +1,7 @@
 ---
 import Search from "../utils/icons/Search.astro";
+const posts = await Astro.glob("../pages/posts/*.md");
+const uniqueTags = [...new Set(posts.map((p) => p.frontmatter.tags).flat())];
 ---
 
 <nav class="flex flex-col gap-2 text-white">
@@ -9,6 +11,7 @@ import Search from "../utils/icons/Search.astro";
         <Search />
       </div>
       <input
+        id="search"
         type="text"
         class="bg-slate-700 border border-slate-600 outline-none w-full rounded-full pl-10 pr-4 py-2 max-h-full text-sm font-medium"
       />
@@ -16,16 +19,42 @@ import Search from "../utils/icons/Search.astro";
 
     <!-- Max 6 # or max width -->
 
-    <ul class="flex gap-2 py-3 transition-all">
-      <li class="bg-slate-600 rounded px-2 py-1 cursor-pointer text-slate-200 text-sm lg:hover:outline outline-1 outline-slate-400">
-        #JS
-      </li>
-      <li class="bg-slate-600 rounded px-2 py-1 cursor-pointer text-slate-200 text-sm lg:hover:outline outline-1 outline-slate-400">
-        #Tailwind
-      </li>
-      <li class="bg-slate-600 rounded px-2 py-1 cursor-pointer text-slate-200 text-sm lg:hover:outline outline-1 outline-slate-400">
-        #React
-      </li>
+    <ul class="gap-2 py-3 transition-all navtags">
+      {
+        uniqueTags.map((t) => {
+          return (
+            <li class="bg-slate-600 rounded px-2 py-1 cursor-pointer text-slate-200 text-sm lg:hover:outline outline-1 outline-slate-400 navtag">
+              #{t}
+            </li>
+          );
+        })
+      }
     </ul>
   </div>
 </nav>
+
+<style>
+  .navtags {
+    columns: 5 auto;
+    text-align: center;
+  }
+
+  .navtags > li {
+    margin-bottom: 10px;
+  }
+</style>
+
+<script>
+  const navtags = document.querySelectorAll(
+    ".navtag"
+  ) as NodeListOf<HTMLElement>;
+
+  const search = document.querySelector("#search") as HTMLInputElement;
+
+  navtags.forEach((nt) => {
+    nt.addEventListener("click", (e) => {
+      search.value = nt.textContent ?? "";
+      search.click();
+    });
+  });
+</script>

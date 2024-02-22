@@ -11,10 +11,66 @@ const posts = await Astro.glob("./posts/*.md");
     <SearchBar />
 
     <ul class="flex flex-col gap-6 py-2">
-      {posts.map((post) => <Card {...post.frontmatter} {...{url:post.url}} />)}
+      {
+        posts.map((post) => (
+          <Card {...post.frontmatter} {...{ url: post.url }} />
+        ))
+      }
     </ul>
-
   </section>
 </MainLayout>
 
+<script>
+  const search = document.getElementById("search") as HTMLInputElement;
+  const titles = document.querySelectorAll(".title") as NodeListOf<Element>;
+  const tags = document.querySelectorAll(".tag") as NodeListOf<Element>;
 
+  search?.addEventListener("keyup", render);
+  search?.addEventListener("click", render);
+
+
+  function render(){
+    const searchInput = search.value
+      .toLowerCase()
+      .split(" ")
+      .filter((input) => input.trim() !== "");
+    const hashtagList = searchInput.filter((s) => s.includes("#"));
+
+    if (hashtagList.length > 0) {
+      filterByTags(hashtagList);
+      return;
+    }
+
+    filterByTitle(searchInput);
+  }
+
+  function filterByTags(hashtagList: string[]) {
+    tags.forEach((tag) => {
+      const card = tag.closest(".card");
+      const tagEls = Array.from(card?.querySelectorAll(".tag") || []).map(
+        (tagEl) => tagEl.textContent?.toLowerCase()
+      );
+      const hasAllTags = hashtagList.every((tag) => tagEls.includes(tag));
+
+      if (!hasAllTags) {
+        card?.classList.add("hidden");
+      } else {
+        card?.classList.remove("hidden");
+      }
+    });
+  }
+
+  function filterByTitle(searchInput: string[]) {
+    titles.forEach((title) => {
+      const card = title.closest(".card");
+      const titleText = title.textContent?.toLowerCase();
+      const isMatch = searchInput.every((word) => titleText?.includes(word));
+
+      if (!isMatch) {
+        card?.classList.add("hidden");
+      } else {
+        card?.classList.remove("hidden");
+      }
+    });
+  }
+</script>
